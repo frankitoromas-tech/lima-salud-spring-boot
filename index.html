@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lima Salud | Inicio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body data-page="home">
+<nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-2 navbar-shadow">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <img src="images/Logo.png" alt="Logo Clinica Lima" style="height: 50px; object-fit: contain;">
+        </a>
+        <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal" aria-controls="navPrincipal" aria-expanded="false" aria-label="Abrir menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navPrincipal">
+            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1 mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link active px-3" href="#inicio">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#servicios">Servicios</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="portal-paciente.html">Citas</a></li>
+                <li class="nav-item"><a class="nav-link px-3" href="#nosotros">Nosotros</a></li>
+                <li class="nav-item ms-lg-2">
+                    <button class="btn btn-primary px-4" data-bs-toggle="modal" data-bs-target="#modalSeleccionRol">Ingresar / Registrarse</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<section class="hero-section" id="inicio">
+    <div class="row g-0 hero-row">
+        <div class="col-lg-7 d-flex align-items-center">
+            <div class="container py-5 py-lg-0">
+                <div class="ps-lg-3">
+                    <span class="hero-badge mb-4 d-inline-flex">Atención Médica 24/7</span>
+                    <h1 class="fw-bold mb-4 hero-title">Tu Salud,<br>Nuestra <span class="text-primary">Prioridad</span></h1>
+                    <p class="lead text-secondary mb-4 hero-desc">
+                        Gestiona tus citas médicas en una plataforma web moderna, segura y accesible para pacientes y especialistas clínicos.
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 mb-5">
+                        <a href="portal-paciente.html" class="btn btn-primary btn-lg px-4">Reservar cita</a>
+                        <a href="#servicios" class="btn btn-outline-primary btn-lg px-4">Conocer más</a>
+                    </div>
+                    <div class="row g-3 hero-stats">
+                        <div class="col-12 col-sm-4">
+                            <div class="metric-chip">
+                                <span class="stat-icon stat-icon-blue"><i class="bi bi-people-fill"></i></span>
+                                <div><strong>10 000+</strong><span style="font-size: 0.8rem;">Pacientes</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div class="metric-chip">
+                                <span class="stat-icon stat-icon-teal"><i class="bi bi-stethoscope"></i></span>
+                                <div><strong>50+</strong><span style="font-size: 0.8rem;">Especialistas</span></div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-4">
+                            <div class="metric-chip">
+                                <span class="stat-icon stat-icon-amber"><i class="bi bi-patch-plus-fill"></i></span>
+                                <div><strong>15 años</strong><span style="font-size: 0.8rem;">Experiencia</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-5 hero-img-col d-none d-lg-block">
+            <img src="images/successful-medical-team.jpg.jpeg" alt="Equipo medico de la clinica">
+        </div>
+    </div>
+</section>
+
+<section id="servicios" class="services-bg py-5">
+    <div class="container">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+            <div>
+                <span class="text-primary fw-semibold">Especialidades</span>
+                <h2 class="fw-bold mb-1">Servicios Médicos Destacados</h2>
+                <p class="text-secondary mb-0">Contamos con personal médico de primer nivel en todas las especialidades.</p>
+            </div>
+            <a class="btn btn-outline-primary" href="portal-paciente.html">Solicitar cita</a>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card service-card h-100 border-0 shadow-sm overflow-hidden">
+                    <img src="images/cardiologia.jpg" alt="Cardiología" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <i class="bi bi-heart-pulse text-primary fs-3"></i>
+                        <h5 class="fw-bold mt-2">Cardiología</h5>
+                        <p class="text-muted small mb-0">Diagnóstico, prevención y tratamiento integral del sistema cardiovascular.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card service-card h-100 border-0 shadow-sm overflow-hidden">
+                    <img src="images/pediatria.jpg" alt="Pediatría" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <i class="bi bi-person-hearts text-primary fs-3"></i>
+                        <h5 class="fw-bold mt-2">Pediatría</h5>
+                        <p class="text-muted small mb-0">Atención cálida, integral y especializada para la salud de niños y adolescentes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card service-card h-100 border-0 shadow-sm overflow-hidden">
+                    <img src="images/traumatologia.jpg" alt="Traumatología" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <i class="bi bi-bandaid text-primary fs-3"></i>
+                        <h5 class="fw-bold mt-2">Traumatología</h5>
+                        <p class="text-muted small mb-0">Cuidado ortopédico de lesiones musculares, articulares y óseas con tecnología avanzada.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card service-card h-100 border-0 shadow-sm overflow-hidden">
+                    <img src="images/neurologia.jpg" alt="Neurología" style="height: 160px; object-fit: cover;">
+                    <div class="card-body">
+                        <i class="bi bi-brain text-primary fs-3"></i>
+                        <h5 class="fw-bold mt-2">Neurología</h5>
+                        <p class="text-muted small mb-0">Estudio y tratamiento especializado de trastornos del sistema nervioso central y periférico.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="nosotros" class="py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-6">
+                <div class="about-img-wrap">
+                    <img src="images/sesiones-clinicas.jpg" alt="Atención clínica">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <span class="text-primary fw-semibold">Clínica Lima Salud</span>
+                <h2 class="fw-bold mt-2">Gestión digital de citas para una atención más ordenada</h2>
+                <p class="text-secondary">
+                    Plataforma web desarrollada bajo altos estándares de ingeniería, garantizando accesibilidad, seguridad y una experiencia fluida tanto para pacientes como para el equipo médico.
+                </p>
+                <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Reserva de citas médicas en línea</span></div>
+                <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Panel del médico para gestión de agenda y pacientes</span></div>
+                <div class="check-item"><i class="bi bi-check-circle-fill"></i><span>Control de accesos y seguridad</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer-shell pt-5 pb-4 text-white">
+    <div class="container text-center">
+        <p class="mb-0">© 2026 Clínica Lima Salud. Proyecto de Marcos de Desarrollo Web.</p>
+    </div>
+</footer>
+
+<div class="modal fade" id="modalSeleccionRol" tabindex="-1" aria-labelledby="modalRolLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg">
+            <div class="modal-header border-bottom-0 pb-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body px-5 pb-5 pt-0 text-center">
+                <h3 class="fw-bold mb-2" id="modalRolLabel">Bienvenido a Clínica Lima</h3>
+                <p class="text-muted mb-4">Selecciona tu perfil para continuar</p>
+                <div class="row g-4 justify-content-center">
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="portal-paciente.html">
+                            <div class="card h-100 role-card bg-light border-0">
+                                <div class="card-body py-4">
+                                    <i class="bi bi-person-heart text-danger mb-3 d-block" style="font-size: 3rem;"></i>
+                                    <h5 class="card-title fw-bold">Soy Paciente</h5>
+                                    <p class="card-text small text-muted">Reserva citas y revisa tu historial.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="agenda-medico.html">
+                            <div class="card h-100 role-card bg-light border-0">
+                                <div class="card-body py-4">
+                                    <i class="bi bi-heart-pulse-fill text-primary mb-3 d-block" style="font-size: 3rem;"></i>
+                                    <h5 class="card-title fw-bold">Soy Médico</h5>
+                                    <p class="card-text small text-muted">Gestiona pacientes y agenda.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="text-decoration-none text-dark" href="login.html">
+                            <div class="card h-100 role-card bg-light border-0">
+                                <div class="card-body py-4">
+                                    <i class="bi bi-shield-lock-fill text-dark mb-3 d-block" style="font-size: 3rem;"></i>
+                                    <h5 class="card-title fw-bold">Iniciar Sesión</h5>
+                                    <p class="card-text small text-muted">Acceso administrativo y general.</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

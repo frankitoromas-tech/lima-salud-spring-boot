@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Paciente</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="css/portal_Paciente.css" />
+  </head>
+
+  <body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary shadow">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#" onclick="mostrarDashboard()">
+          <i class="bi bi-hospital"></i> Clínica Lima - Portal Paciente
+        </a>
+        <button
+          class="btn btn-outline-light btn-sm"
+          onclick="window.location.href = 'index.html'"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </nav>
+
+    <main id="dashboard" class="container py-5">
+      <h1 class="text-center mb-5 fw-bold" style="color: #1e3a8a">
+        Bienvenido al Portal
+      </h1>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-4">
+          <div
+            class="card h-100 text-center border-0 shadow card-menu"
+            data-bs-toggle="modal"
+            data-bs-target="#modalCita"
+          >
+            <div class="card-body py-5">
+              <i class="bi bi-calendar-plus fs-1 text-primary"></i>
+              <h3 class="card-title mt-3">Registrar Cita</h3>
+              <p class="text-muted small">Solicita una nueva cita médica</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div
+            class="card h-100 text-center border-0 shadow card-menu"
+            onclick="mostrarServicios()"
+          >
+            <div class="card-body py-5">
+              <i class="bi bi-hospital fs-1 text-primary"></i>
+              <h3 class="card-title mt-3">Servicios</h3>
+              <p class="text-muted small">
+                Conoce nuestros servicios disponibles
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div
+            class="card h-100 text-center border-0 shadow card-menu"
+            onclick="mostrarMisCitas()"
+          >
+            <div class="card-body py-5">
+              <i class="bi bi-clipboard2-check fs-1 text-primary"></i>
+              <h3 class="card-title mt-3">Mis Citas</h3>
+              <p class="text-muted small">
+                Ve y gestiona tus citas registradas
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <section id="servicios" class="container py-5 section-hidden">
+      <button class="btn btn-secondary mb-3" onclick="mostrarDashboard()">
+        ← Volver
+      </button>
+      <h3>Servicios Disponibles</h3>
+      <div class="row g-4 mt-1" id="gridServiciosPage"></div>
+    </section>
+
+    <section id="misCitas" class="container py-5 section-hidden">
+      <button class="btn btn-secondary mb-3" onclick="mostrarDashboard()">
+        ← Volver
+      </button>
+      <h3>Mis Citas</h3>
+      <div class="row mt-3" id="listaCitas"></div>
+    </section>
+
+    <div class="modal fade" id="modalCita" data-bs-backdrop="static">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <div>
+              <h5 class="mb-0">Registrar Cita Médica</h5>
+              <small id="labelPaso" class="opacity-75">Paso 1 de 3</small>
+            </div>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+
+          <div class="progress" style="height: 4px; border-radius: 0">
+            <div
+              id="barraProgreso"
+              class="progress-bar"
+              style="width: 0%; transition: width 0.3s"
+            ></div>
+          </div>
+
+          <div class="modal-body">
+            <form id="formCita" onsubmit="return false;">
+              <div class="paso" id="paso1">
+                <h6 class="fw-semibold mb-3">Datos del paciente</h6>
+                <form id="formPaso1">
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <input
+                        id="inp_nombre"
+                        class="form-control"
+                        placeholder="Nombre completo"
+                        required
+                      />
+                    </div>
+                    <div class="col-6">
+                      <input
+                        id="inp_dni"
+                        class="form-control"
+                        placeholder="DNI"
+                        required
+                        maxlength="8"
+                      />
+                    </div>
+                    <div class="col-6">
+                      <input
+                        id="inp_edad"
+                        class="form-control"
+                        placeholder="Edad"
+                        type="number"
+                        min="0"
+                        max="120"
+                        required
+                      />
+                    </div>
+                    <div class="col-12">
+                      <input
+                        id="inp_parentesco"
+                        class="form-control"
+                        placeholder="Parentesco (ej: Titular, Hijo, Cónyuge)"
+                        required
+                      />
+                    </div>
+                  </div>
+                </form>
+                <button
+                  type="button"
+                  class="btn btn-primary w-100 mt-3"
+                  onclick="guardarPaso1()"
+                >
+                  Siguiente <i class="bi bi-arrow-right"></i>
+                </button>
+              </div>
+
+              <div class="paso section-hidden" id="paso2">
+                <h6 class="fw-semibold mb-1">Selecciona un servicio</h6>
+                <p class="text-muted small mb-3">
+                  Elige la especialidad y luego escoge tu horario disponible.
+                </p>
+
+                <div class="row g-2" id="gridServicios"></div>
+
+                <div id="tablaHorarios" class="section-hidden mt-3"></div>
+
+                <div class="d-flex gap-2 mt-3">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onclick="anteriorPaso()"
+                  >
+                    <i class="bi bi-arrow-left"></i> Atrás
+                  </button>
+                  <button
+                    type="button"
+                    id="btnRegistrar"
+                    class="btn btn-success ms-auto"
+                    disabled
+                    onclick="registrarCita()"
+                  >
+                    <i class="bi bi-check-circle"></i> Confirmar Cita
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modalDetalle">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">
+              <i class="bi bi-clipboard2-pulse"></i> Detalle de Cita
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body" id="detalleContenido"></div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              Cerrar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 2000">
+      <div id="toastExito" class="toast text-bg-success border-0" role="alert">
+        <div class="d-flex align-items-center p-2">
+          <i class="bi bi-check-circle-fill me-2"></i>
+          <span id="toastMsg">Cita registrada</span>
+          <button
+            type="button"
+            class="btn-close btn-close-white ms-auto"
+            data-bs-dismiss="toast"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="portal_Paciente.js"></script>
+  </body>
+</html>

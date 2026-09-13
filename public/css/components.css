@@ -1,0 +1,204 @@
+body {
+  font-family: var(--mc-font-body);
+  background: var(--mc-bg);
+  color: var(--mc-dark);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.navbar-brand,
+.brand-text {
+  font-family: var(--mc-font-heading);
+}
+
+.btn,
+.form-control,
+.form-select,
+.card,
+.badge,
+.list-group-item,
+.modal-content {
+  border-radius: 14px;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--mc-primary), #1567d3);
+  border-color: transparent;
+  box-shadow: 0 14px 32px rgba(44, 123, 229, 0.24);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: linear-gradient(135deg, #166edc, #0d5abc);
+  border-color: transparent;
+}
+
+.btn-outline-primary {
+  color: var(--mc-primary);
+  border-color: rgba(44, 123, 229, 0.24);
+}
+
+.btn-outline-primary:hover {
+  color: var(--mc-primary);
+  background: rgba(44, 123, 229, 0.08);
+  border-color: rgba(44, 123, 229, 0.35);
+}
+
+.form-control,
+.form-select {
+  min-height: 50px;
+  border-color: rgba(26, 35, 50, 0.12);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: rgba(44, 123, 229, 0.45);
+  box-shadow: 0 0 0 0.25rem rgba(44, 123, 229, 0.12);
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mc-primary);
+}
+
+.brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--mc-primary), var(--mc-secondary));
+  color: #fff;
+  font-size: 1.2rem;
+  box-shadow: 0 10px 28px rgba(44, 123, 229, 0.24);
+}
+
+.brand-text {
+  color: var(--mc-dark);
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+.brand-text span {
+  color: var(--mc-primary);
+}
+
+.surface-card,
+.service-card,
+.stats-card,
+.metric-panel,
+.dashboard-shell,
+.auth-shell,
+.booking-shell,
+.calendar-shell {
+  border-radius: var(--mc-radius-lg);
+  box-shadow: var(--mc-shadow-sm);
+}
+
+.service-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--mc-shadow-md);
+}
+
+.service-icon,
+.metric-icon,
+.appointment-icon {
+  width: 56px;
+  height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  font-size: 1.25rem;
+}
+
+.service-blue {
+  background: rgba(44, 123, 229, 0.12);
+  color: var(--mc-primary);
+}
+
+.service-teal {
+  background: rgba(0, 184, 169, 0.14);
+  color: var(--mc-secondary);
+}
+
+.service-yellow {
+  background: rgba(246, 185, 59, 0.2);
+  color: #bc8513;
+}
+
+.service-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #c23b3b;
+}
+
+.service-pink {
+  background: rgba(217, 70, 239, 0.12);
+  color: #bd4ed8;
+}
+
+.service-purple {
+  background: rgba(126, 87, 194, 0.13);
+  color: #6d4cc9;
+}
+
+.status-confirmada {
+  background: rgba(16, 185, 129, 0.15);
+  color: #0d8b63;
+}
+
+.status-programada {
+  background: rgba(44, 123, 229, 0.14);
+  color: #1b67ce;
+}
+
+.status-cancelada {
+  background: rgba(239, 68, 68, 0.14);
+  color: #c23b3b;
+}
+
+.appointment-list-item,
+.history-item,
+.sidebar-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--mc-border);
+  border-radius: 18px;
+  background: #fff;
+}
+
+.modal-detail-list div,
+.summary-list div,
+.profile-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(26, 35, 50, 0.07);
+}
+
+.modal-detail-list div:last-child,
+.summary-list div:last-child,
+.profile-list li:last-child {
+  border-bottom: 0;
+}
+
+.modal-detail-list span,
+.summary-list span,
+.profile-list span {
+  color: var(--mc-muted);
+}

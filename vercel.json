@@ -1,0 +1,35 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "installCommand": null,
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    {
+      "source": "/login",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/portal-paciente",
+      "destination": "/portal-paciente.html"
+    },
+    {
+      "source": "/agenda-medico",
+      "destination": "/agenda-medico.html"
+    },
+    {
+      "source": "/login_Medico.html",
+      "destination": "/login.html"
+    },
+    {
+      "source": "/portal_Paciente.html",
+      "destination": "/portal-paciente.html"
+    },
+    {
+      "source": "/agenda_Medico.html",
+      "destination": "/agenda-medico.html"
+    }
+  ]
+}

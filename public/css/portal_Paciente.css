@@ -1,0 +1,29 @@
+.card-menu {
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-menu:hover {
+    transform: scale(1.04);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.section-hidden {
+    display: none !important;
+}
+
+.card-servicio {
+    cursor: pointer;
+    transition:
+    transform 0.15s,
+    border-color 0.15s;
+}
+
+.card-servicio:hover {
+    transform: scale(1.03);
+}
+
+.paso-indicador {
+    font-size: 0.8rem;
+    color: #6c757d;
+}

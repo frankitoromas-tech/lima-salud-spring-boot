@@ -1,0 +1,13 @@
+.card-menu {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.card-menu:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.section-hidden { 
+    display: none; 
+}

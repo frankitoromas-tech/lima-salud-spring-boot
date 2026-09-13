@@ -1,0 +1,22 @@
+:root {
+  /* Colores de marca */
+  --mc-primary: #2c7be5;
+  --mc-secondary: #00b8a9;
+  --mc-dark: #1a2332;
+  --mc-bg: #f5f8ff;
+  --mc-border: rgba(26, 35, 50, 0.12);
+  --mc-muted: #64748b;
+
+  /* Tipografía */
+  --mc-font-body: "Inter", sans-serif;
+  --mc-font-heading: "Poppins", sans-serif;
+
+  /* Bordes */
+  --mc-radius-sm: 12px;
+  --mc-radius-md: 18px;
+  --mc-radius-lg: 24px;
+
+  /* Sombras */
+  --mc-shadow-sm: 0 4px 24px rgba(26, 35, 50, 0.08);
+  --mc-shadow-md: 0 12px 40px rgba(26, 35, 50, 0.14);
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal del Médico - Clínica Lima</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/agenda_Medico.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-primary shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#" onclick="mostrarDashboard()">
+                <i class="bi bi-hospital"></i> Clínica Lima - Portal Médico
+            </a>
+            <button class="btn btn-outline-light btn-sm" onclick="window.location.href='login_Medico.html'">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main id="dashboard" class="container py-5">
+        <h1 class="text-center mb-5 fw-bold" style="color: #1e3a8a;">Bienvenido al Portal del Médico</h1>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow card-menu" data-bs-toggle="modal" data-bs-target="#modalPaciente">
+                    <div class="card-body py-5">
+                        <i class="bi bi-person-plus-fill text-primary" style="font-size: 4rem;"></i>
+                        <h3 class="card-title mt-3">Registrar Pacientes</h3>
+                        <p class="text-muted small">Añadir nuevos pacientes a la base de datos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow card-menu" data-bs-toggle="modal" data-bs-target="#modalCita">
+                    <div class="card-body py-5">
+                        <i class="bi bi-calendar-event-fill text-success" style="font-size: 4rem;"></i>
+                        <h3 class="card-title mt-3">Registrar Citas</h3>
+                        <p class="text-muted small">Programar una nueva atención médica.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card h-100 text-center border-0 shadow card-menu" onclick="mostrarCitas()">
+                    <div class="card-body py-5">
+                        <i class="bi bi-clipboard2-pulse-fill text-info" style="font-size: 4rem;"></i>
+                        <h3 class="card-title mt-3">Citas Médicas</h3>
+                        <p class="text-muted small">Ver y gestionar la agenda del día.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="vistaCitas" class="container py-5 section-hidden">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="fw-bold" style="color: #1e3a8a;">Citas Médicas</h2>
+            <button class="btn btn-secondary" onclick="mostrarDashboard()">Volver al Menú</button>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6 mx-auto">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control border-start-0" placeholder="Buscar por paciente, DNI o sección...">
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src=https://ui-avatars.com/api/?name=Juan+Pérez&background=2c7be5&color=fff&size=150 class="card-img-top" alt="Paciente">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Juan Pérez</h5>
+                        <p class="card-text mb-1 small"><strong>DNI:</strong> 72635441</p>
+                        <p class="card-text mb-1 small"><strong>Tel:</strong> 987 654 321</p>
+                        <p class="card-text mb-1 small"><strong>Correo:</strong> juan@mail.com</p>
+                        <hr>
+                        <span class="badge bg-primary">Cardiología</span>
+                        <p class="mt-2 fw-bold text-primary"><i class="bi bi-clock"></i> 09:00 AM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src=https://ui-avatars.com/api/?name=María+López&background=00b8a9&color=fff&size=150 class="card-img-top" alt="Paciente">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">María López</h5>
+                        <p class="card-text mb-1 small"><strong>DNI:</strong> 10293847</p>
+                        <p class="card-text mb-1 small"><strong>Tel:</strong> 912 345 678</p>
+                        <p class="card-text mb-1 small"><strong>Correo:</strong> maria@mail.com</p>
+                        <hr>
+                        <span class="badge bg-success">Pediatría</span>
+                        <p class="mt-2 fw-bold text-primary"><i class="bi bi-clock"></i> 10:30 AM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src=https://ui-avatars.com/api/?name=Ricardo+Soto&background=00b8a9&color=fff&size=150 class="card-img-top" alt="Paciente">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Ricardo Soto</h5>
+                        <p class="card-text mb-1 small"><strong>DNI:</strong> 44556677</p>
+                        <p class="card-text mb-1 small"><strong>Tel:</strong> 999 888 777</p>
+                        <p class="card-text mb-1 small"><strong>Correo:</strong> soto@mail.com</p>
+                        <hr>
+                        <span class="badge bg-warning text-dark">Dermatología</span>
+                        <p class="mt-2 fw-bold text-primary"><i class="bi bi-clock"></i> 11:15 AM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src=https://ui-avatars.com/api/?name=Ana+Torres&background=00b8a9&color=fff&size=150 class="card-img-top" alt="Paciente">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold">Ana Torres</h5>
+                        <p class="card-text mb-1 small"><strong>DNI:</strong> 88776655</p>
+                        <p class="card-text mb-1 small"><strong>Tel:</strong> 954 123 987</p>
+                        <p class="card-text mb-1 small"><strong>Correo:</strong> ana@mail.com</p>
+                        <hr>
+                        <span class="badge bg-danger">Emergencia</span>
+                        <p class="mt-2 fw-bold text-primary"><i class="bi bi-clock"></i> 12:45 PM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal fade" id="modalPaciente" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title">Nuevo Registro de Paciente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formPaciente">
+                        <div class="mb-3"><label class="form-label">Nombre Completo</label><input type="text" class="form-control" required></div>
+                        <div class="mb-3"><label class="form-label">DNI</label><input type="number" class="form-control" required></div>
+                        <div class="mb-3"><label class="form-label">Correo</label><input type="email" class="form-control" required></div>
+                        <button type="submit" class="btn btn-primary w-100">Guardar Paciente</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCita" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Programar Cita</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formCita">
+                        <div class="mb-3"><label class="form-label">Elegir Paciente</label><select class="form-select"><option>Seleccione...</option></select></div>
+                        <div class="mb-3"><label class="form-label">Sección/Especialidad</label><select class="form-select"><option>Cardiología</option><option>Pediatría</option></select></div>
+                        <div class="mb-3"><label class="form-label">Fecha y Hora</label><input type="datetime-local" class="form-control" required></div>
+                        <button type="submit" class="btn btn-success w-100">Registrar Cita</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="agenda_Medico.js"></script>
+</body>
+</html>

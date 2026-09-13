@@ -1,0 +1,10 @@
+.role-card {
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+.role-card:hover {
+    transform: translateY(-5px);
+    border-color: #0d6efd;
+    box-shadow: 0 10px 20px rgba(13, 110, 253, 0.15);
+}
