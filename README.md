@@ -1,159 +1,116 @@
-# Lima Salud
+# 🏥 Lima Salud — Sistema de Gestión Clínica & Citas Médicas
 
-Sistema web para gestion de citas medicas. Spring Boot 3 + Thymeleaf + JPA/Hibernate + MySQL.
+[![Java 17](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
+[![Spring Boot 3](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![Spring Security](https://img.shields.io/badge/Spring_Security-6%20%2B%20JWT-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)](https://spring.io/projects/spring-security)
+[![MySQL 8](https://img.shields.io/badge/MySQL-8.x-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Thymeleaf](https://img.shields.io/badge/Thymeleaf-3-005F0F?style=for-the-badge&logo=thymeleaf&logoColor=white)](https://www.thymeleaf.org/)
+[![Railway](https://img.shields.io/badge/Deploy-Railway_Cloud-0B0D0E?style=for-the-badge&logo=railway&logoColor=white)](https://railway.app/)
+[![UTP](https://img.shields.io/badge/UTP-Ingenier%C3%ADa%20de%20Sistemas-red?style=for-the-badge)](https://www.utp.edu.pe/)
 
-## Estructura del proyecto
+Plataforma web empresarial para la gestión integral de citas médicas, especialidades y administración de expedientes clínicos. Diseñado con una arquitectura desacoplada y defensiva en **Spring Boot 3**, autenticación dual (Web por formulario con BCrypt + API REST protegida por JWT) y persistencia transaccional en **MySQL 8.x**.
+
+---
+
+## 🏛️ Estructura del Proyecto
 
 ```
 lima-salud/
-├── database/              # Scripts SQL y guia MySQL
-├── docs/entregables/      # Monografia, diapositivas y assets academicos
+├── database/              # Scripts SQL, consultas de verificación y guía MySQL
+├── docs/entregables/      # Monografía, especificaciones de arquitectura y diapositivas
 ├── src/main/java/com/clinica/limasalud/
-│   ├── api/               # API REST protegida con JWT (login + citas + pacientes)
-│   ├── config/            # Seguridad (Spring Security + JWT), datos iniciales
-│   ├── controller/        # Controladores web (MVC)
-│   ├── dto/               # Formularios y validaciones
-│   ├── entity/            # Entidades JPA (Usuario, Paciente, Cita...)
-│   ├── repository/        # Acceso a datos (Spring Data JPA)
-│   ├── security/          # JwtService y JwtAuthenticationFilter
-│   └── service/           # Logica de negocio
+│   ├── api/               # API REST stateless protegida con tokens JWT
+│   ├── config/            # Configuración de Spring Security, JWT y DataInitializer
+│   ├── controller/        # Controladores Web MVC (Thymeleaf)
+│   ├── dto/               # Objetos de Transferencia de Datos y validaciones (@Valid)
+│   ├── entity/            # Modelos de Dominio JPA (Usuario, Paciente, Cita, Especialidad)
+│   ├── repository/        # Interfaces DAO basadas en Spring Data JPA
+│   ├── security/          # Filtros perimetrales (JwtService, JwtAuthenticationFilter)
+│   └── service/           # Capa de Lógica de Negocio y transacciones (@Transactional)
 └── src/main/resources/
-    ├── static/            # CSS, JS e imagenes
+    ├── static/            # Recursos estáticos (CSS moderno, JavaScript, imágenes)
     ├── templates/         # Vistas Thymeleaf (admin, auth, medico, paciente, public)
     ├── application.properties
     ├── application-local.properties.example
     └── application-prod.properties
 ```
 
-## Requisitos previos
+---
 
-- Java 17+
-- Maven 3.9+
-- MySQL 8.x ([MySQL Installer](https://dev.mysql.com/downloads/installer/))
-- MySQL Workbench (recomendado)
+## 🚀 Requisitos Previos & Puesta en Marcha
 
-## Configuracion MySQL local (para cada desarrollador)
+- **JDK 17** o superior.
+- **Maven 3.9+**
+- **MySQL 8.x** (Local o en contenedor Docker).
 
-Cada desarrollador configura **su propio MySQL local**. No compartas contraseñas en el repo.
-
-1. **Instala MySQL** (Server + Workbench) y define la clave del usuario `root`.
-2. **Copia la plantilla** de propiedades:
+### 1. Configuración MySQL Local
+1. Copia la plantilla de propiedades:
    ```bash
    copy src\main\resources\application-local.properties.example src\main\resources\application-local.properties
    ```
-3. **Edita** `application-local.properties` y reemplaza `TU_CLAVE_AQUI` por tu contraseña local.
-4. **Ejecuta** la aplicacion:
+2. Edita `application-local.properties` y define tu contraseña local de MySQL.
+3. Inicia el servidor de desarrollo:
    ```bash
    mvn spring-boot:run
    ```
-5. Abre http://localhost:8080
+4. Navega a `http://localhost:8080`.
 
-> La base `lima_salud` y las tablas se crean automaticamente al arrancar (Hibernate `ddl-auto=update`).
+> Las tablas y relaciones relacionales se crean automáticamente mediante Hibernate (`ddl-auto=update`).
 
-Mas detalle en [`database/README.md`](database/README.md).
+### 2. Modo Rápido sin MySQL (Perfil H2 en Memoria)
+Ideal para evaluación inmediata o auditorías sin configurar una base de datos externa:
+- **Windows (Lanzador directo):**
+  ```bash
+  .\run-h2.bat
+  ```
+- **Terminal (PowerShell):**
+  ```powershell
+  mvn spring-boot:run "-Dspring-boot.run.profiles=h2"
+  ```
 
-## Ejecutar sin MySQL (perfil `h2`, rapido para demo/pruebas)
+---
 
-Si solo quieres **probar la app o generar evidencias** sin instalar ni configurar MySQL,
-usa el perfil `h2` (base de datos en memoria, con datos de ejemplo precargados).
+## 🔐 Matriz de Seguridad (Spring Security 6 & JWT)
 
-**Forma facil (Windows)** — doble clic o desde cualquier terminal:
+El sistema incorpora dos cadenas perimetrales independientes:
+1. **Frontend Web MVC:** Sesiones con autenticación por formulario, almacenamiento de contraseñas con hash **BCrypt** y autorización basada en roles (`ADMIN`, `MEDICO`, `PACIENTE`).
+2. **API REST:** Arquitectura *stateless* asegurada mediante tokens Bearer **JWT (HMAC-SHA384)**.
 
-```
-.\run-h2.bat
-```
+### Endpoints de la API REST
 
-**Forma manual** — ojo con las comillas segun tu terminal:
+| Método | Endpoint | Rol Requerido | Descripción |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/login` | Público | Autenticación y emisión de JWT |
+| `GET` | `/api/perfil` | Autenticado | Obtención de identidad y rol del token activo |
+| `GET` | `/api/citas` | `ADMIN`, `MEDICO`, `PACIENTE` | Consulta de citas médicas asignadas |
+| `GET` | `/api/pacientes` | `ADMIN` | Acceso al padrón confidencial de pacientes |
 
-```powershell
-# PowerShell: las comillas son OBLIGATORIAS (si no, da "Unknown lifecycle phase .run.profiles=h2")
-mvn spring-boot:run "-Dspring-boot.run.profiles=h2"
-```
+---
 
-```cmd
-:: CMD / simbolo del sistema (sin comillas funciona)
-mvn spring-boot:run -Dspring-boot.run.profiles=h2
-```
+## 👥 Credenciales de Prueba (Precargadas por `DataInitializer`)
 
-Abre http://localhost:8080. Los perfiles `local` y `prod` (MySQL) no se ven afectados.
+| Usuario | Contraseña | Rol Asignado |
+| :--- | :--- | :--- |
+| `admin` | `Admin2026!` | `ROLE_ADMIN` |
+| `medico` | `Medico2026!` | `ROLE_MEDICO` |
+| `paciente` | `Paciente2026!` | `ROLE_PACIENTE` |
 
-> `mvn spring-boot:run` a secas usa el perfil `local` y **requiere** tu
-> `application-local.properties` con la clave de MySQL (ver seccion anterior); si no existe,
-> falla con *"Failed to configure a DataSource"*.
+---
 
-## Verificar tablas en MySQL Workbench
-
-1. Conectate a tu instancia local de MySQL.
-2. Abre el archivo [`database/consultas.sql`](database/consultas.sql).
-3. Ejecuta las consultas para ver tablas, usuarios, pacientes y citas.
-
-## Despliegue Railway
+## ☁️ Despliegue en Railway Cloud
 
 1. Conecta el repositorio en [Railway](https://railway.app).
-2. **Root Directory**: dejalo **vacio** (raiz del repo, donde esta `pom.xml`).
-3. Anade el **plugin MySQL** y vincula las variables al servicio web:
-   - `MYSQLHOST`, `MYSQLPORT`, `MYSQLDATABASE`, `MYSQLUSER`, `MYSQLPASSWORD`
-4. Variable de entorno del servicio web:
-   ```
+2. Añade el complemento **MySQL** e inyecta las variables de entorno de conexión.
+3. Establece la variable de entorno del servicio:
+   ```env
    SPRING_PROFILES_ACTIVE=prod
    ```
-5. El archivo `railway.toml` define build (`mvn clean package`) y start (`java -jar ... -Dspring.profiles.active=prod`).
+4. El archivo `railway.toml` automatiza la compilación con `mvn clean package` y la ejecución del JAR optimizado.
 
-## Usuarios demo
+---
 
-| Usuario  | Contrasena    | Rol      |
-|----------|---------------|----------|
-| admin    | Admin2026!    | ADMIN    |
-| medico   | Medico2026!   | MEDICO   |
-| paciente | Paciente2026! | PACIENTE |
-
-Se crean automaticamente al primer arranque (`DataInitializer`).
-
-## Seguridad (Spring Security + JWT)
-
-El sistema implementa las dos capas de seguridad exigidas en el Avance 3, mediante **dos
-cadenas de filtros independientes** ([`SecurityConfig`](src/main/java/com/clinica/limasalud/config/SecurityConfig.java)):
-
-1. **Aplicacion web (Spring Security)** — login por formulario con control por roles
-   (`ADMIN`, `MEDICO`, `PACIENTE`). Las contrasenas se almacenan cifradas con **BCrypt**.
-2. **API REST (JWT)** — proteccion *stateless* de `/api/**`. El cliente obtiene un token en
-   `POST /api/auth/login` y lo envia luego en la cabecera `Authorization: Bearer <token>`.
-
-### Endpoints de la API
-
-| Metodo | Endpoint | Rol requerido |
-|--------|----------------------|-------------------------|
-| POST | `/api/auth/login` | Publico (devuelve el JWT) |
-| GET | `/api/perfil` | Cualquier usuario autenticado |
-| GET | `/api/citas` | ADMIN, MEDICO, PACIENTE |
-| GET | `/api/pacientes` | Solo ADMIN |
-
-### Ejemplo de uso
-
-```bash
-# 1) Obtener el token
-curl -X POST http://localhost:8080/api/auth/login \
-     -H "Content-Type: application/json" \
-     -d '{"username":"admin","password":"Admin2026!"}'
-# -> { "token": "eyJhbGciOiJIUzM4NCJ9...", "tipo": "Bearer", "rol": "ADMIN", ... }
-
-# 2) Consumir un endpoint protegido con el token
-curl http://localhost:8080/api/pacientes \
-     -H "Authorization: Bearer <TOKEN>"
-```
-
-La clave de firma y la expiracion del token se configuran con las variables
-`JWT_SECRET` y `JWT_EXPIRATION_MS` (ver `application.properties`).
-
-## Pruebas
-
-Las pruebas de integracion de seguridad se ejecutan sobre una base de datos **H2 en memoria**
-(perfil `test`), por lo que **no requieren MySQL**:
-
-```bash
-mvn test
-```
-
-[`SeguridadJwtTest`](src/test/java/com/clinica/limasalud/SeguridadJwtTest.java) verifica que la
-API rechaza peticiones sin token (401), que el login entrega un JWT valido con su rol, y que los
-roles se respetan (ADMIN accede a pacientes; PACIENTE accede a citas pero no a pacientes → 403).
+## 👨‍💻 Autor & Contacto
+- **Desarrollador:** **Φραγκοσύνη / francus 🐦‍🔥** (Frank Emiliano Vargas Huamán)
+- **Especialidad:** Backend Java Enterprise & Spring Boot
+- **GitHub:** [@frankitoromas-tech](https://github.com/frankitoromas-tech)
+- **LinkedIn:** [Frank Emiliano Vargas](https://www.linkedin.com/in/frank-emiliano-vargas-huam%C3%A1n-6a010a378/)
