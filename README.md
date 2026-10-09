@@ -1,5 +1,8 @@
 # 🏥 Lima Salud — Sistema de Gestión Clínica & Citas Médicas
 
+[![Maven CI](https://github.com/frankitoromas-tech/lima-salud-spring-boot/actions/workflows/maven-ci.yml/badge.svg)](https://github.com/frankitoromas-tech/lima-salud-spring-boot/actions/workflows/maven-ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 [![Java 17](https://img.shields.io/badge/Java-17-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/)
 [![Spring Boot 3](https://img.shields.io/badge/Spring_Boot-3.x-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Spring Security](https://img.shields.io/badge/Spring_Security-6%20%2B%20JWT-6DB33F?style=for-the-badge&logo=springsecurity&logoColor=white)](https://spring.io/projects/spring-security)
