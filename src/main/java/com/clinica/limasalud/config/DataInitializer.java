@@ -14,9 +14,15 @@ import java.util.List;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * Inicializador de datos de prueba para entornos de desarrollo y pruebas.
+ * Restringido a perfiles no productivos (!prod) para evitar inyeccion de cuentas predeterminadas en producción.
+ */
 @Configuration
+@Profile("!prod")
 public class DataInitializer {
 
     @Bean
