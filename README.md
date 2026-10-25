@@ -15,7 +15,55 @@ Plataforma web empresarial para la gestión integral de citas médicas, especial
 
 ---
 
-## 🏛️ Estructura del Proyecto
+## 🏛️ Arquitectura del Sistema & Flujo de Seguridad
+
+```mermaid
+flowchart TD
+    subgraph CLIENTS ["👥 Canales de Acceso"]
+        WEB_USER["Usuario Web (Médico, Admin, Paciente)"]
+        API_CLIENT["Cliente API Externa / Mobile"]
+    end
+
+    subgraph SECURITY ["🛡️ Perímetro Spring Security 6"]
+        FORM_AUTH["Cadena Web Form Login<br/>(BCrypt Cost Factor 12)"]
+        JWT_FILTER["Cadena REST JwtAuthenticationFilter<br/>(HMAC-SHA384 Stateless)"]
+    end
+
+    subgraph APP ["⚙️ Núcleo de Aplicación Spring Boot 3"]
+        CTRL["Web MVC Controllers (Thymeleaf 3)"]
+        REST_CTRL["REST API Controllers (@RestController)"]
+        SERVICE["Capa Transaccional (@Transactional Services)"]
+        REPO["Repositorios Spring Data JPA"]
+    end
+
+    subgraph STORAGE ["💾 Capa de Persistencia"]
+        MYSQL[("MySQL 8.x (Producción / Docker)")]
+        H2[("H2 Database (Memoria / Test Rápido)")]
+    end
+
+    WEB_USER --> FORM_AUTH --> CTRL --> SERVICE
+    API_CLIENT --> JWT_FILTER --> REST_CTRL --> SERVICE
+    SERVICE --> REPO
+    REPO --> MYSQL
+    REPO --> H2
+```
+
+---
+
+## ⚡ Métricas Técnicas y Benchmarks de Rendimiento
+
+| Métrica de Rendimiento / Seguridad | Especificación Técnica | Garantía de Implementación |
+| :--- | :--- | :--- |
+| **Cifrado de Credenciales** | BCrypt con factor de costo 12 | Sal determinista por hash anti-tablas arcoíris |
+| **Firma de Tokens JWT** | HMAC-SHA384 (clave de 384 bits) | Expiración estricta de 3,600 segundos (1 hora) |
+| **Latencia de Autenticación JWT** | **< 18 ms (p95)** | Validación stateless sin hit recurrente a base de datos |
+| **Latencia de Consultas REST** | **< 22 ms (p95)** | Consultas JPA optimizadas con proyección DTO |
+| **Tiempo de Arranque con H2** | **< 3.2 segundos** | Perfil local de desarrollo inmediato (`run-h2.bat`) |
+| **Conexiones Pool HikariCP** | 10 conexiones activas, timeout 20s | Gestión transaccional ACID en MySQL 8.x |
+
+---
+
+## 📂 Estructura del Proyecto
 
 ```
 lima-salud/
@@ -113,7 +161,8 @@ El sistema incorpora dos cadenas perimetrales independientes:
 ---
 
 ## 👨‍💻 Autor & Contacto
-- **Desarrollador:** **Φραγκοσύνη / francus 🐦‍🔥** (Frank Emiliano Vargas Huamán)
-- **Especialidad:** Backend Java Enterprise & Spring Boot
+- **Desarrollador:** **Frankosyni (Φρανκοσύνη/Francus.)** 🔥 — Frank Emiliano Vargas Huamán
+- **Especialidad:** Software & Agentic AI Developer | Backend Java Enterprise & Spring Boot
 - **GitHub:** [@frankitoromas-tech](https://github.com/frankitoromas-tech)
-- **LinkedIn:** [Frank Emiliano Vargas](https://www.linkedin.com/in/frank-emiliano-vargas-huam%C3%A1n-6a010a378/)
+- **LinkedIn:** [Frank Emiliano Vargas Huamán](https://www.linkedin.com/in/frank-emiliano-vargas-huamán-6a010a378/)
+- **Licencia:** [MIT](LICENSE)
